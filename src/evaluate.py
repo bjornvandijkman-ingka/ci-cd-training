@@ -1,13 +1,15 @@
 import warnings
 
-warnings.filterwarnings(action="ignore")
-
 import pandas as pd
-from sklearn.metrics import accuracy_score, f1_score
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import f1_score
 from xgboost import XGBClassifier
 
 from config import Config
-from src.helpers import load_processed_data, load_model
+from src.helpers import load_model
+from src.helpers import load_processed_data
+
+warnings.filterwarnings(action="ignore")
 
 
 def predict(model: XGBClassifier, X_test: pd.DataFrame):
@@ -17,8 +19,12 @@ def predict(model: XGBClassifier, X_test: pd.DataFrame):
 def evaluate(config: Config):
 
     # Load data and model
-    X_test = load_processed_data(f"{config.PROJECT_ROOT}/{config.DATA_PROCESSED_PATH}/X_test.csv")
-    y_test = load_processed_data(f"{config.PROJECT_ROOT}/{config.DATA_PROCESSED_PATH}/y_test.csv")
+    X_test = load_processed_data(
+        f"{config.PROJECT_ROOT}/{config.DATA_PROCESSED_PATH}/X_test.csv"
+    )
+    y_test = load_processed_data(
+        f"{config.PROJECT_ROOT}/{config.DATA_PROCESSED_PATH}/y_test.csv"
+    )
 
     model = load_model(f"{config.PROJECT_ROOT}/{config.MODEL_PATH}/model.pickle")
 

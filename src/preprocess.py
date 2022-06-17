@@ -1,9 +1,9 @@
 import pandas as pd
-from sklearn.model_selection import train_test_split
 from patsy import dmatrices
+from sklearn.model_selection import train_test_split
 
-from src.helpers import load_raw_data
 from config import Config
+from src.helpers import load_raw_data
 
 
 def get_features(target: str, features: list, data: pd.DataFrame):
@@ -34,10 +34,18 @@ def process_data(config: Config):
     )
 
     # Save data
-    X_train.to_csv(f"{config.PROJECT_ROOT}/{config.DATA_PROCESSED_PATH}/X_train.csv", index=False)
-    X_test.to_csv(f"{config.PROJECT_ROOT}/{config.DATA_PROCESSED_PATH}/X_test.csv", index=False)
-    y_train.to_csv(f"{config.PROJECT_ROOT}/{config.DATA_PROCESSED_PATH}/y_train.csv", index=False)
-    y_test.to_csv(f"{config.PROJECT_ROOT}/{config.DATA_PROCESSED_PATH}/y_test.csv", index=False)
+    X_train.to_csv(
+        f"{config.PROJECT_ROOT}/{config.DATA_PROCESSED_PATH}/X_train.csv", index=False
+    )
+    X_test.to_csv(
+        f"{config.PROJECT_ROOT}/{config.DATA_PROCESSED_PATH}/X_test.csv", index=False
+    )
+    y_train.to_csv(
+        f"{config.PROJECT_ROOT}/{config.DATA_PROCESSED_PATH}/y_train.csv", index=False
+    )
+    y_test.to_csv(
+        f"{config.PROJECT_ROOT}/{config.DATA_PROCESSED_PATH}/y_test.csv", index=False
+    )
 
 
 if __name__ == "__main__":

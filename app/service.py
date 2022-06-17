@@ -1,12 +1,15 @@
 import os
-import uvicorn
+
+import joblib
 import numpy as np
 import pandas as pd
-from patsy import dmatrix
-import joblib
-from config import Config
-from fastapi import FastAPI, Request
+import uvicorn
+from fastapi import FastAPI
+from fastapi import Request
 from fastapi.responses import JSONResponse
+from patsy import dmatrix
+
+from config import Config
 
 app = FastAPI()
 
@@ -55,7 +58,8 @@ async def predict(request: Request) -> np.ndarray:
     response_dict["prediction"] = result.tolist()
     return JSONResponse(content=response_dict)
 
+
 if __name__ == "__main__":
     config = Config()
     model = load_model(f"{config.PROJECT_ROOT}/{config.MODEL_PATH}/model.pickle")
-    uvicorn.run(app, host="0.0.0.0", port=os.environ.get('PORT', '3000'))
+    uvicorn.run(app, host="0.0.0.0", port=os.environ.get("PORT", "3000"))

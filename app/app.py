@@ -19,9 +19,7 @@ def get_inputs():
         options=[1, 2, 3],
         help="payment tier: 1: highest 2: mid level 3:lowest",
     )
-    data["Age"] = st.number_input(
-        "Current Age", min_value=15, step=1, value=20
-    )
+    data["Age"] = st.number_input("Current Age", min_value=15, step=1, value=20)
     data["Gender"] = st.selectbox("Gender", options=["Male", "Female"])
     data["EverBenched"] = st.selectbox(
         "Ever Kept Out of Projects for 1 Month or More", options=["No", "Yes"]
@@ -33,11 +31,16 @@ def get_inputs():
 
 
 def write_predictions(data: dict):
+    """Write predicitons to streamlit UI
+
+    Args:
+        data (dict): Input data
+    """
     if st.button("Will this employee leave in 2 years?"):
         data_json = json.dumps(data)
 
         prediction = requests.post(
-            "https://employee-predict-vantage-{YOUR_NAME}.herokuapp.com/predict",
+            "https://employee-predict-vantage-bjorn.herokuapp.com/predict",
             headers={"content-type": "application/json"},
             data=data_json,
         ).text[0]

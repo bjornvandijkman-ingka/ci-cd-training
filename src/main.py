@@ -1,7 +1,7 @@
+from config import Config
 from src.evaluate import evaluate
 from src.preprocess import process_data
 from src.train import train
-from config import Config
 
 
 def main(config):
