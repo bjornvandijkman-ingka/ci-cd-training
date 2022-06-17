@@ -31,5 +31,5 @@ class Config:
         "Age",
         "Gender",
         "EverBenched",
-        "ExperienceInCurrentDomain"
+        "ExperienceInCurrentDomain",
     ]

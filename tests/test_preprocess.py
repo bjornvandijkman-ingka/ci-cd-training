@@ -1,5 +1,7 @@
 import pandas as pd
-from src.preprocess import get_features, rename_columns
+
+from src.preprocess import get_features
+from src.preprocess import rename_columns
 
 
 def test_get_features():
@@ -26,12 +28,7 @@ def test_get_features():
             "ExperienceInCurrentDomain": [2.0, 3.0],
         }
     )
-    y_expected = pd.DataFrame(
-        {
-            "LeaveOrNot": [0.0, 1.0]
-        }
-
-    )
+    y_expected = pd.DataFrame({"LeaveOrNot": [0.0, 1.0]})
     features = [
         "City",
         "PaymentTier",
